@@ -22,14 +22,14 @@
 
 ;; Part 1 asks us to count the number of times the numbers
 ;; increase. Clojure has a handy function called `partition` that will
-;; give us a sliding window of values. By applying the `<` function we
-;; can get a collection of booleans, and filtering with the `identity`
+;; give us a sliding window of values. By filtering with the `<`
 ;; function we can get a list of all the windows that
 ;; increased. Counting that sequence will give us the answer to part
 ;; 1.
 
-(let [steps (partition 2 1 parsed-input)]
-  (count (filter identity (map #(apply < %) steps))))
+(->> (partition 2 1 parsed-input)
+     (filter #(apply < %))
+     count)
 
 ;; ## Part 2
 
@@ -37,6 +37,8 @@
 ;; sliding window of size 3, then sum the windows, then proceed with
 ;; the approach from part 1.
 
-(let [steps (partition 3 1 parsed-input)
-      sums-windows (partition 2 1 (map #(apply + %) steps))]
-  (count (filter identity (map #(apply < %) sums-windows))))
+(->> (partition 3 1 parsed-input)
+     (map #(apply + %))
+     (partition 2 1)
+     (filter #(apply < %))
+     count)
