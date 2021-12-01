@@ -14,9 +14,17 @@
                :watch-paths ["src/notebooks" "src/main"]
                :show-filter-fn #(str/starts-with? % "src/notebooks")})
 
+(defn build-gh-pages []
+  (clerk/build-static-app! {:paths (->> (file-seq (io/file "src/notebooks"))
+                                        (filter #(not (.isDirectory %)))
+                                        (mapv str))
+                            :out-path "docs"}))
+
 (comment
 
   (def token "")
   (util/fetch-input {:token token :year 2021 :day 1})
+
+  (build-gh-pages)
 
   )
