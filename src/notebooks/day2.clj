@@ -4,7 +4,8 @@
             [clojure.string :as str]
             [nextjournal.clerk :as clerk]))
 
-;; # Day 2
+^{::clerk/visibility :hide}
+(util/aoc-day-heading 2)
 
 ;; ## Part 1
 

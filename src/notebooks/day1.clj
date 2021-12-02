@@ -4,6 +4,9 @@
             [clojure.string :as str]
             [nextjournal.clerk :as clerk]))
 
+^{::clerk/visibility :hide}
+(util/aoc-day-heading 1)
+
 ;; I'm trying something new this year. My goal is to reduce the stress
 ;; of advent of code by taking my time more on each problem and
 ;; suppressing my natural competitiveness.
