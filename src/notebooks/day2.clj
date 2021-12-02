@@ -25,8 +25,8 @@
     {:dir (keyword dir)
      :value (Long/parseLong n)}))
 
-;; I'll model the submarine state with a map, with keys :pos
-;; and :depth initialized to 0.
+;; I'll model the submarine state with a map, with keys `:pos`
+;; and `:depth` initialized to `0`.
 
 (def initial-state {:pos 0 :depth 0})
 
@@ -52,7 +52,7 @@
 ;; ## Part 2
 
 ;; Part 2 alters the semantics of the instructions, and introduces a
-;; new bit of state called :aim.
+;; new bit of state called `:aim`.
 
 ;; Let's make a new `move2` function that implements the new instruction
 ;; logic.
