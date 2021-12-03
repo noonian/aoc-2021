@@ -49,6 +49,24 @@
 
 (* (:pos part1) (:depth part1))
 
+;; ### Visualizing intermediate states
+
+;; We can get a sequence of each state along the submarines journey by
+;; using `reductions` instead of `reduce`.
+
+(def part1-states (reductions move initial-state parsed-input))
+
+;; We can use Clerk's vega-lite viewer to render the states as a line
+;; chart. Figuring out the the input options for vega-lite proved as
+;; hard as todays advent challenge.
+
+(clerk/vl
+ {:data {:values part1-states}
+  :mark {:type "line" :interpolate "step-after"}
+  :encoding {:x {:field :pos :type "quantitative"}
+             :y {:field :depth :type "quantitative"}}
+  :height 400 :width 700})
+
 ;; ## Part 2
 
 ;; Part 2 alters the semantics of the instructions, and introduces a
@@ -73,3 +91,14 @@
 ;; And again, multiplying the position and depth give us the answer.
 
 (* (:pos part2) (:depth part2))
+
+;; ### Visualizing intermediate states
+
+(def part2-states (reductions move2 (assoc initial-state :aim 0) parsed-input))
+
+(clerk/vl
+ {:data {:values part2-states}
+  :mark {:type "line" :interpolate "step-after"}
+  :encoding {:x {:field :pos :type "quantitative"}
+             :y {:field :depth :type "quantitative"}}
+  :height 400 :width 700})
