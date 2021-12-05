@@ -20,28 +20,20 @@
   (str/split-lines (str/trim input)))
 
 (defn most-common-bit [digit strs]
-  (let [freqs (frequencies (mapv #(nth % digit) strs))]
-    (when-not (and (> (count freqs) 1)
-                   (apply = (vals freqs)))
-      (->> (frequencies (mapv #(nth % digit) strs))
-           (reduce (fn [[char num] [c n]]
-                     (if (> n num)
-                       [c n]
-                       [char num]))
-                   [nil 0])
-           first))))
+  (let [freqs (frequencies (mapv #(nth % digit) strs))
+        sorted (sort-by (comp - second) freqs)]
+    (when-not (and (> (count sorted) 1)
+                   (apply = (map second (take 2 sorted))))
+      (ffirst sorted))))
+
+(most-common-bit 0 ["foo" "food"])
 
 (defn least-common-bit [digit strs]
-  (let [freqs (frequencies (mapv #(nth % digit) strs))]
-    (when-not (and (> (count freqs) 1)
-                   (apply = (vals freqs)))
-      (->> freqs
-           (reduce (fn [[char num] [c n]]
-                     (if (< n num)
-                       [c n]
-                       [char num]))
-                   [nil Long/MAX_VALUE])
-           first))))
+  (let [freqs (frequencies (mapv #(nth % digit) strs))
+        sorted (sort-by second freqs)]
+    (when-not (and (> (count sorted) 1)
+                   (apply = (map second (take 2 sorted))))
+      (ffirst sorted))))
 
 (defn gamma [num-strs]
   (->> (for [i (range 12)]
@@ -52,6 +44,10 @@
   (->> (for [i (range 12)]
          (least-common-bit i num-strs))
        (apply str)))
+
+(defn power-consumption [report]
+  (* (Long/parseLong (gamma report) 2)
+     (Long/parseLong (epsilon report) 2)))
 
 (defn power-consumption [report]
   (* (Long/parseLong (gamma report) 2)
