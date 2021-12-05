@@ -60,8 +60,8 @@
 
 (defn cols [board]
   (for [i (range 5)]
-    (mapv #(get % i) board))
-  #_(mapv #(get %1 %2) board (range 5)))
+    (mapv #(get % i) board)))
+
 (def rows identity)
 
 (defn complete? [row-or-col]
@@ -111,8 +111,6 @@
          :n n
          :score (score last-winning-board n)})
       (let [new-n (first nums)]
-        (println "new-n" new-n "num-boards" (count (filterv (complement wins?)
-                                                            boards)))
         (recur new-n
                (rest nums)
                (mapv #(mark % new-n)
