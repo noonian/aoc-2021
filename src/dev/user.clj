@@ -24,7 +24,7 @@
 
   (def token "")
 
-  (util/fetch-input {:token token :year 2021 :day 2})
+  (util/fetch-input {:token token :year 2021 :day 6})
 
   (build-gh-pages)
 
