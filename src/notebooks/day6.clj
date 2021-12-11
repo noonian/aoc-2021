@@ -58,8 +58,8 @@
 ;; Instead of modelling each timer separately, we can use a map with
 ;; the keys being the days on the timer 0-8 and the values being the
 ;; number of fish with those timer values. This should speed things up
-;; a lot because we always have a finite set of numbers and can
-;; caluclate the totals via counting by the values.
+;; a lot because we have a constant set of numbers and can caluclate
+;; the totals via counting by the values.
 
 (def safe-plus (fnil +' 0))
 
@@ -80,8 +80,8 @@
      vals
      (apply +))
 
-;; I'm very happy with this approach! It is much faster and pretty
-;; easy to reason about and has constant space and linear time in the
+;; I'm very happy with this approach! It is much faster, pretty easy
+;; to reason about, and has constant space and linear time in the
 ;; number of days.
 
 (->> (parse-fish-ages input)
