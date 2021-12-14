@@ -22,9 +22,11 @@
 
 (comment
 
+  (clerk/show! (io/file "src/notebooks/day13.clj"))
+
   (def token "")
 
-  (util/fetch-input {:token token :year 2021 :day 11})
+  (util/fetch-input {:token token :year 2021 :day 13})
 
   (build-gh-pages)
 
