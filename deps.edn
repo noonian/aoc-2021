@@ -4,7 +4,9 @@
                          :git/sha "c399b1b621b19dc576ea46cd4b254477e1ca9756"}
         clj-http/clj-http {:mvn/version "3.12.3"}
         io.github.nextjournal/clerk {:git/url "https://github.com/nextjournal/clerk.git"
-                                     :sha "ba194851dd21559351b5af29f168aeaa80c436ff"}}
+                                     :sha "ba194851dd21559351b5af29f168aeaa80c436ff"}
+        org.clojure/data.priority-map {:mvn/version "1.1.0"}}
  :aliases
  {:dev
-  {:extra-paths ["src/dev"]}}}
+  {:extra-paths ["src/dev"]
+   :jvm-opts ["-agentpath:/Applications/YourKit-Java-Profiler-2021.11.app/Contents/Resources/bin/mac/libyjpagent.dylib"]}}}
